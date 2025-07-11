@@ -1,5 +1,4 @@
 import { Locator,Page } from "@playwright/test";
-import { BlobOptions } from "buffer";
 
 
 export class CartPage {

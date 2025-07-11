@@ -24,6 +24,7 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL || 'https://www.demoblaze.com/index.html',
     headless: process.env.HEADLESS === 'true',
+    viewport: { width: 1920, height: 1080 },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
 

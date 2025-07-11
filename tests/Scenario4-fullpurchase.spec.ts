@@ -4,13 +4,10 @@ import { HomePage } from '../Pages/homePage';
 import { CartPage } from '../Pages/cartPage';
 
 test.describe('Test of Purchase of an Item Test Suite', async () => {
-  const username = 'TestUserLogin'+Math.floor(Math.random() * 10000);
-  const password = '12345678';
   const URL = process.env.BASE_URL || 'https://www.demoblaze.com/index.html';
-  
+
   test.beforeEach(async ({ page }) => {
     const homePage = new HomePage(page);
-
     await page.goto(URL);
 });
 
@@ -27,12 +24,12 @@ test('Check when order is placed it gives success message',async({page})=>{
         page.waitForEvent('dialog').then(async (dialog) => {
           expect.soft(dialog.type()).toBe('alert');
           //expect on the message 
-          expect.soft(dialog.message()).toBe('Product added.');
+          expect.soft(dialog.message()).toBe('Product added');
           await dialog.accept();
         }),
         await homePage.addToCartBtn.click(),
       ]);
-})
+});
 test('Successfully create an order for an Apple monitor 24', async ({ page }) => {
     const homePage = new HomePage(page);
     const cartPage = new CartPage(page);
@@ -45,6 +42,12 @@ test('Successfully create an order for an Apple monitor 24', async ({ page }) =>
         month : '07',
         year : '25'
     }
+
+
+    //Generate Username And password
+    const username = homePage.usernameAndPassword()[0];
+    const password = homePage.usernameAndPassword()[1];
+
     //User on Sign up
     await homePage.signUpUser(username,password);
 

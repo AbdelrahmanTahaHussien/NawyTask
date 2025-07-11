@@ -1,5 +1,5 @@
 import {Locator , Page} from '@playwright/test'
-import { HomePage } from './homePage';
+
 
 export class PopUp {
     readonly page : Page;

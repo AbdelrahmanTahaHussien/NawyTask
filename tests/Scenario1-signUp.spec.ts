@@ -3,8 +3,6 @@ import { PopUp } from '../Pages/PopUps';
 import { HomePage } from '../Pages/homePage';
 
 test.describe('Test of SignUp Scenario', async () => {
-  const username = 'Test' + Math.floor(Math.random() * 10000);
-  const password = '12345678';
   const URL = process.env.BASE_URL || 'https://www.demoblaze.com/index.html';
   
   test.beforeEach(async ({ page }) => {
@@ -14,8 +12,12 @@ test.describe('Test of SignUp Scenario', async () => {
   test('User Can Sign In with Valid Data', async ({ page }) => {
     const homePage = new HomePage(page);
     const signUp = new PopUp(page);
+    //Generate Username And password
+    const username = homePage.usernameAndPassword()[0];
+    const password = homePage.usernameAndPassword()[1];
+
     //click on Sign up
-    await homePage.HeaderTabs('Log in').click();
+    await homePage.HeaderTabs('Sign up').click();
     //Fill in with Valid Credentials
     await signUp.fillSignUpfields('username', username);
     await signUp.fillSignUpfields('password', password);
@@ -34,6 +36,12 @@ test.describe('Test of SignUp Scenario', async () => {
   test('User Can Sign Up with already existing credentials', async ({ page }) => {
     const homePage = new HomePage(page);
     const signUp = new PopUp(page);
+    //Generate Username And password
+    const username = homePage.usernameAndPassword()[0];
+    const password = homePage.usernameAndPassword()[1];
+
+    //First SignUp
+    await homePage.signUpUser(username,password);
     //click on Sign up
     await homePage.HeaderTabs('Sign up').click();
     //Fill in with repeated Credentials
@@ -54,6 +62,10 @@ test.describe('Test of SignUp Scenario', async () => {
   test('User Can Sign Up with empty credentials', async ({ page }) => {
     const homePage = new HomePage(page);
     const signUp = new PopUp(page);
+    //Generate Username And password
+    const username = homePage.usernameAndPassword()[0];
+    const password = homePage.usernameAndPassword()[1];
+
     //click on Sign up
     await homePage.HeaderTabs('Sign up').click();
     //Fill in with empty Credentials

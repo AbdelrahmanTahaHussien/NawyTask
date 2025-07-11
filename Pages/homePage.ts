@@ -1,7 +1,6 @@
 import {Locator , Page} from '@playwright/test'
 import { PopUp } from './PopUps';
 import { CartPage } from './cartPage';
-import { Await } from 'react-router-dom';
 
 export class HomePage{
     readonly page : Page;
@@ -15,6 +14,13 @@ export class HomePage{
         this.cartPage = new CartPage(page);
         this.navbarUserIdentifier = this.page.locator('.navbar-nav.ml-auto').locator('#nameofuser');
         this.addToCartBtn = this.page.getByRole('link', { name: 'Add to cart' });
+    }
+
+    //Generate the Username and Password
+    usernameAndPassword(){
+        const username =  'AbdelrahmanTestLogin'+Math.floor(Math.random() * 10000);
+        const password = '123456789'
+        return  [username,password];
     }
     // Returns the locator for a header tab by name
     HeaderTabs(tabNeeded : 'Sign up'|'Log in'|'Cart'|'About us' |'Contact'|'Log out'){

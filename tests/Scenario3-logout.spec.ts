@@ -1,20 +1,22 @@
 import { test, expect } from '@playwright/test';
-import { PopUp } from '../Pages/PopUps';
 import { HomePage } from '../Pages/homePage';
 
 test.describe('Test of Login Scenario', async () => {
-  const username = 'TestUserLogin'+Math.floor(Math.random() * 10000);
-  const password = '12345678';
+  
   const URL = process.env.BASE_URL || 'https://www.demoblaze.com/index.html';
   
   test.beforeEach(async ({ page }) => {
     const homePage = new HomePage(page);
-
     await page.goto(URL);
 });
 
 test('User Can Login with Valid Data', async ({ page }) => {
     const homePage = new HomePage(page);
+
+    //Generate Username And password
+    const username = homePage.usernameAndPassword()[0];
+    const password = homePage.usernameAndPassword()[1];
+
     //User on Sign up
     await homePage.signUpUser(username,password);
 
