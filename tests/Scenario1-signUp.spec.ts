@@ -5,7 +5,7 @@ import { HomePage } from '../Pages/homePage';
 test.describe('Test of SignUp Scenario', async () => {
   const username = 'Test' + Math.floor(Math.random() * 10000);
   const password = '12345678';
-  const URL = 'https://www.demoblaze.com/index.html'
+  const URL = process.env.BASE_URL || 'https://www.demoblaze.com/index.html';
   
   test.beforeEach(async ({ page }) => {
     await page.goto(URL);
